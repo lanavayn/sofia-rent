@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave a Testimonial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container orange-box">
+      <h1>📝 Leave a Testimonial for Sofia</h1>
+    </div>
+  </header>
+
+  <section class="testimonial-form">
+    <form name="testimonial"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      onsubmit="showConfirmation(event)">
+
+      <input type="hidden" name="form-name" value="testimonial">
+
+      <p style="display:none">
+        <label>Don’t fill this out: <input name="bot-field"></label>
+      </p>
+
+      <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your Testimonial:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+
+      <input type="hidden" id="encoded_name" name="encoded_name">
+      <input type="hidden" id="encoded_message" name="encoded_message">
+
+      <button type="submit">Submit</button>
+    </form>
+
+
+    <div id="confirmation" style="display:none; margin-top: 20px; font-weight: bold; color: green;">
+      🎉 Thank you for your testimonial!!!
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="index.html">← Back to Home</a></p>
+  </footer>
+
+  <script>
+    function showConfirmation(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      // Fill the encoded hidden fields before sending
+      const nameField = form.querySelector('#name');
+      const msgField  = form.querySelector('#message');
+      form.querySelector('#encoded_name').value = encodeURIComponent(nameField.value);
+      form.querySelector('#encoded_message').value = encodeURIComponent(msgField.value);
+
+      // Send data to Netlify
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+      .then(() => {
+        form.style.display = "none";
+        document.getElementById("confirmation").style.display = "block";
+      })
+      .catch(() => alert("Submission failed. Please try again."));
+    }
+  </script>
+
+</body>
+</html>
