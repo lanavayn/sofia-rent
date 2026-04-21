@@ -627,3 +627,12 @@ section.location {
 section.location p {
   color: #333;
 }
+
+.gallery-img {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03);
+}

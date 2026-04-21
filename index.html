@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sofia Rent – Cozy Basement Near the Lake</title>
+  <title>Sofia Rent – Cozy Private Suite in Tiny</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-K74LJWQPLX"></script>
   <script>
@@ -15,8 +15,8 @@
   </script>
 
   <!-- ✅ SEO Meta Tags -->
-  <meta name="description" content="Cozy 2-bedroom basement for rent near the lake in Tiny, Ontario. Comfortable stay with fireplace, living room, and parking available." />
-  <meta name="keywords" content="basement for rent, Tiny Ontario rental, Bluewater Beach rental, 2 bedroom basement, short term rental Ontario, Sofia Rent" />
+  <meta name="description" content="Cozy 2-bedroom low-level for rent near the lake in Tiny, Ontario. Comfortable stay with fireplace, living room, and parking available." />
+  <meta name="keywords" content="lower-level for rent, Tiny Ontario rental, Bluewater Beach rental, 2 bedroom low-lewel, short term rental Ontario, Sofia Rent" />
   <meta name="author" content="Lana Vayner" />
 
   <link rel="stylesheet" href="style.css" />
@@ -38,8 +38,8 @@
       </div>
   
       <div class="hero-content">
-        <h2>Cozy Basement Stay Near the Lake</h2>
-        <p>Tiny, Ontario • 10-minute walk to the lake • Fireplace • Parking</p>
+        <h2>Cozy Lower-Level Stay Near the Lake</h2>
+        <p> • 10-minute walk to the lake • Fireplace • Parking</p>
   
         <div class="cta-buttons">
           <a class="cta-btn call">📞 Call Sofia</a>
@@ -55,8 +55,8 @@
       <h2>About the Space</h2>
     
       <p>
-        Enjoy a cozy and spacious basement stay just minutes from the lake.
-        This private lower-level space features a comfortable living room, a fireplace, and plenty of room to relax.
+        Enjoy a cozy and spacious lower-level stay just minutes from the lake.
+        This comfortable space features a bright living area, a fireplace, and plenty of room to relax.
       </p>
     
       <ul class="features">
@@ -82,7 +82,8 @@
       </p>
     
       <p>
-        <strong>Please note:</strong> there is no full kitchen and no separate private entrance.
+        <strong>Please note:</strong> the home has a shared front entrance with separate access inside —
+        one staircase leads to the main floor and another to the lower-level suite.
       </p>
     </section>
 
@@ -91,19 +92,19 @@
     
       <div class="photo-gallery">
     
-        <img src="images/01_living_room_wide.jpg" alt="Spacious living room with sofas and TV">
+        <img src="images/01_living_room_wide.jpg" alt="Spacious living room with sofas and TV" class="gallery-img">
     
-        <img src="images/03_game_room_ping_pong.jpg" alt="Living area with ping pong table">
+        <img src="images/03_game_room_ping_pong.jpg" alt="Living area with ping pong table" class="gallery-img">
     
-        <img src="images/02_living_room_tv_fireplace.jpg" alt="Cozy fireplace and TV area">
+        <img src="images/02_living_room_tv_fireplace.jpg" alt="Cozy fireplace and TV area" class="gallery-img">
     
-        <img src="images/04_dining.jpg" alt="Dining table area">
+        <img src="images/04_dining.jpg" alt="Dining table area" class="gallery-img">
     
-        <img src="images/05_bedroom_1.jpg" alt="Bedroom with comfortable bed">
+        <img src="images/05_bedroom_1.jpg" alt="Bedroom with comfortable bed" class="gallery-img">
     
-        <img src="images/08_bathroom_main.jpg" alt="Clean bathroom with shower">
+        <img src="images/08_bathroom_main.jpg" alt="Clean bathroom with shower" class="gallery-img">
     
-        <img src="images/09_kitchen_area.jpg" alt="Kitchen area with fridge, microwave and coffee machine">
+        <img src="images/09_kitchen_area.jpg" alt="Kitchen area with fridge, microwave and coffee machine" class="gallery-img">
     
       </div>
     </section>
@@ -143,7 +144,7 @@
         <p>
           “Quiet, comfortable, and welcoming. A great place to relax, with plenty of space and convenient amenities.”
         </p>
-        <span>– Guest</span>
+        <span>– Vlad V.</span>
       </div>
     </section>
 
@@ -198,7 +199,7 @@
   function shareSite() {
     if (navigator.share) {
       navigator.share({
-        title: "Sofia's Rent – Cozy Basement Near the Lake",
+        title: "Sofia's Rent – Cozy Lower-Level Stay Near the Lake",
         text: "Check out Sofia's Rent ",
         url: window.location.href
       });
@@ -207,6 +208,38 @@
     }
   }
 </script>
+
+<script>
+  document.querySelectorAll('.gallery-img').forEach(img => {
+    img.addEventListener('click', function() {
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.background = 'rgba(0,0,0,0.8)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = 1000;
+  
+      const bigImg = document.createElement('img');
+      bigImg.src = this.src;
+      bigImg.style.maxWidth = '90%';
+      bigImg.style.maxHeight = '90%';
+      bigImg.style.borderRadius = '10px';
+  
+      overlay.appendChild(bigImg);
+  
+      overlay.addEventListener('click', () => {
+        overlay.remove();
+      });
+  
+      document.body.appendChild(overlay);
+    });
+  });
+  </script>
 
  </body>
 </html>
