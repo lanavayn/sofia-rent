@@ -6,6 +6,8 @@ body {
   background: #fff8f0;
   color: #333;
   line-height: 1.6;
+  font-size: 1.15rem;
+  font-weight: 600;
 }
 
 /* Header */
@@ -65,9 +67,9 @@ header h1 {
 
 /* Main container */
 .container {
-  max-width: 800px;
+  max-width: 900px; /* для десктопа */
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 1rem;
 }
 
 /* Sections */
@@ -753,18 +755,20 @@ section.location p {
 
 .amenities h3 {
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .amenities-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;  /* 🔥 1 колонка */
   gap: 12px 20px;
 }
 
 .amenity {
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.20rem;
   padding: 6px 8px;
   border-radius: 8px;
   transition: 0.2s;
@@ -775,13 +779,59 @@ section.location p {
 }
 
 .amenity .icon {
-  margin-right: 10px;
-  font-size: 1.2rem;
+  margin-right: 12px;
+  font-size: 1.4rem; 
 }
 
 /* Desktop */
 @media (min-width: 768px) {
   .amenities-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;  /* 🔥 1 колонка */
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .amenity {
+    font-size: 1.25rem;   /* ещё больше на телефоне */
+    padding: 10px 12px;
+    align-items: flex-start; /* 🔥 важно для длинных строк */
+  }
+
+  .amenity .icon {
+    font-size: 1.5rem;
+  }
+
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  section p,
+  .amenity,
+  .contact a,
+  .testimonial-card p,
+  .location p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .amenities-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .amenity {
+    padding: 8px 10px;
+  }
+
+  .amenity .icon {
+    font-size: 1.45rem;
+    min-width: 2rem;
   }
 }
