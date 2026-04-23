@@ -742,7 +742,7 @@ section.location p {
 }
 
 .phone-number {
-  font-size: 18px;      /* больше размер */
-  font-weight: 700;     /* жирный */
-  letter-spacing: 0.5px;
+  font-size: 20px;      /* больше размер */
+  font-weight: 900;     /* жирный */
+  font-family: Arial, sans-serif; /* ← более чёткий и жирный */
 }
