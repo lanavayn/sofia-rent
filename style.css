@@ -740,3 +740,9 @@ section.location p {
     font-size: 26px;
   }
 }
+
+.phone-number {
+  font-size: 18px;      /* больше размер */
+  font-weight: 700;     /* жирный */
+  letter-spacing: 0.5px;
+}
