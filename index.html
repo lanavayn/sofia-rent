@@ -140,35 +140,44 @@
       <h2>📸 Photo Tour</h2>
     
       <div class="photo-gallery">
-    
-        <img src="images/01_living_room_wide.jpg" alt="Spacious living room with sofas and TV" class="gallery-img">
-    
+        <img src="images/01_living_room_wide.jpg" alt="Spacious living room with sofas" class="gallery-img">
         <img src="images/03_game_room_ping_pong.jpg" alt="Living area with ping pong table" class="gallery-img">
-    
-        <img src="images/02_living_room_tv_fireplace.jpg" alt="Cozy fireplace and TV area" class="gallery-img">
-    
+        <img src="images/02_living_room_tv_fireplace.jpg" alt="Cozy fireplace area" class="gallery-img">
         <img src="images/04_dining.jpg" alt="Dining table area" class="gallery-img">
-    
         <img src="images/05_bedroom_1.jpg" alt="Bedroom with comfortable bed" class="gallery-img">
-
         <img src="images/06_bedroom_2.jpg" alt="Second bedroom" class="gallery-img">
-    
         <img src="images/08_bathroom_main.jpg" alt="Clean bathroom with shower" class="gallery-img">
-    
         <img src="images/09_kitchen_area.jpg" alt="Kitchen area with fridge, microwave and coffee machine" class="gallery-img">
-
-        <!-- Outdoor / Backyard -->
-        <img src="images/10_table_deck.jpg" alt="Outdoor dining table on deck" class="gallery-img">
-
-        <img src="images/11_sofa_deck.jpg" alt="Cozy outdoor seating area" class="gallery-img">
-
-        <img src="images/12_backyard_fireplace.jpg" alt="Backyard with fire pit" class="gallery-img">
-
-        <img src="images/13_trampoline.jpg" alt="Backyard with trampoline" class="gallery-img">
-
-        <img src="images/14_BBQ.jpg" alt="BBQ grill available" class="gallery-img">
-    
       </div>
+    </section>
+    
+    <section class="activities">
+      <details>
+        <summary>🌳 Other Outdoor Activities</summary>
+    
+        <div class="photo-gallery activities-gallery">
+          <figure>
+            <img src="images/14_BBQ.jpg" alt="BBQ grill available" class="gallery-img">
+            <figcaption>BBQ available</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/13_trampoline.jpg" alt="Backyard trampoline" class="gallery-img">
+            <figcaption>Trampoline in the backyard</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/15_basketball.jpg" alt="Outdoor basketball hoop" class="gallery-img">
+            <figcaption>Basketball hoop</figcaption>
+          </figure>
+    
+          <figure>
+            <img src="images/16_pullup_bar.jpg" alt="Outdoor pull-up bar for exercise" class="gallery-img">
+            <figcaption>Fitness area (pull-up bar)</figcaption>
+          </figure>
+    
+        </div>
+      </details>
     </section>
 
   <section class="location">
@@ -277,6 +286,7 @@
   let lightboxOverlay = null;
   let lightboxImage = null;
   let lightboxCounter = null;
+  let lightboxCaption = null;
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -285,6 +295,9 @@
     lightboxImage.src = galleryImages[currentIndex].src;
     lightboxImage.alt = galleryImages[currentIndex].alt || '';
     lightboxCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+    if (lightboxCaption) {
+      lightboxCaption.textContent = galleryImages[currentIndex].alt || '';
+    }
   }
 
   function showPrevImage(e) {
@@ -355,6 +368,9 @@
     lightboxCounter = document.createElement('div');
     lightboxCounter.className = 'lightbox-counter';
 
+    lightboxCaption = document.createElement('div');
+    lightboxCaption.className = 'lightbox-caption';
+
     content.addEventListener('click', function(e) {
       e.stopPropagation();
     });
@@ -382,6 +398,7 @@
     content.appendChild(prevBtn);
     content.appendChild(lightboxImage);
     content.appendChild(nextBtn);
+    content.appendChild(lightboxCaption); 
     content.appendChild(lightboxCounter);
     lightboxOverlay.appendChild(content);
     document.body.appendChild(lightboxOverlay);

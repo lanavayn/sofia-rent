@@ -835,3 +835,61 @@ section.location p {
     min-width: 2rem;
   }
 }
+
+.activities {
+  margin-top: 2rem;
+}
+
+.activities details {
+  background: #fff;
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.activities summary {
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.activities summary::after {
+  content: " +";
+  font-weight: 700;
+}
+
+.activities details[open] summary::after {
+  content: " −";
+}
+
+.activities-gallery {
+  margin-top: 1rem;
+}
+
+.activities figure {
+  margin: 0;
+}
+
+.activities figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  color: #444;
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  max-width: 80%;
+  text-align: center;
+}
