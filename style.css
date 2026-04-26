@@ -893,3 +893,28 @@ section.location p {
   max-width: 80%;
   text-align: center;
 }
+
+.hero-highlight {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 8px 0 12px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 8px 0 14px;
+  color: rgba(255,255,255,0.95);
+  background: rgba(0,0,0,0.35);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.hero-features {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 18px;
+}
