@@ -54,12 +54,6 @@
       event.preventDefault();
       const form = event.target;
 
-      // Fill the encoded hidden fields before sending
-      const nameField = form.querySelector('#name');
-      const msgField  = form.querySelector('#message');
-      form.querySelector('#encoded_name').value = encodeURIComponent(nameField.value);
-      form.querySelector('#encoded_message').value = encodeURIComponent(msgField.value);
-
       // Send data to Netlify
       fetch("/", {
         method: "POST",
