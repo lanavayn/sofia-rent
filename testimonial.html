@@ -16,28 +16,31 @@
   <section class="testimonial-form">
     <form name="testimonial"
       method="POST"
-      action="/thank-you.html"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
-      >
+      onsubmit="showConfirmation(event)">
 
       <input type="hidden" name="form-name" value="testimonial">
 
       <p style="display:none">
-        <label>Don’t fill this out: <input name="bot-field"></label>
+        <label>Don’t fill this out:
+          <input name="bot-field">
+        </label>
       </p>
 
       <div class="form-group">
-        <label for="name">Your Name:</label>
+        <label for="name">Your Name</label>
         <input type="text" id="name" name="name" required>
       </div>
 
       <div class="form-group">
-        <label for="message">Your Testimonial:</label>
+        <label for="message">Your Testimonial</label>
         <textarea id="message" name="message" rows="4" required></textarea>
       </div>
 
-      <button type="submit">Submit</button>
+      <div style="text-align:center;">
+        <button type="submit">Submit</button>
+      </div>
     </form>
 
 
@@ -49,7 +52,23 @@
   <footer>
     <p><a href="index.html">← Back to Home</a></p>
   </footer>
-
+  <script>
+    function showConfirmation(event) {
+      event.preventDefault();
+      const form = event.target;
+  
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+      .then(() => {
+        form.style.display = "none";
+        document.getElementById("confirmation").style.display = "block";
+      })
+      .catch(() => alert("Submission failed. Please try again."));
+    }
+  </script>
 
 </body>
 </html>
