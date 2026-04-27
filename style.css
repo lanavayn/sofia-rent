@@ -938,3 +938,65 @@ section.location p {
   color: rgba(255,255,255,0.85);
   margin-bottom: 18px;
 }
+
+.pricing-card {
+  text-align: center;
+  border: 1px solid #f1d2a8;
+  background: #fffdf9;
+}
+
+.price-main {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 8px;
+  margin: 10px 0 4px;
+}
+
+.price {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #cc6600;
+}
+
+.per-night {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #555;
+}
+
+.price-note {
+  margin: 0 0 18px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.included-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.included-grid div {
+  background: #fff8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .included-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .price {
+    font-size: 2.4rem;
+  }
+}
+
+.more-amenities.hidden {
+  display: none;
+}
