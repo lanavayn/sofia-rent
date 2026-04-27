@@ -14,12 +14,20 @@
   </header>
 
   <section class="testimonial-form">
-    <form name="testimonial"
-    method="POST"
-    action="/thank-you.html"
-    data-netlify="true">
+      <form name="testimonial"
+      method="POST"
+      action="/thank-you.html"
+      data-netlify="true"
+      netlify-honeypot="bot-field">
 
       <input type="hidden" name="form-name" value="testimonial">
+
+      <div class="bot-field" aria-hidden="true">
+        <label>
+          Don’t fill this out:
+          <input name="bot-field" tabindex="-1" autocomplete="off">
+        </label>
+      </div>
 
 
       <div class="form-group">
