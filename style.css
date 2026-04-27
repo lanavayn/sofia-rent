@@ -867,6 +867,26 @@ section.location p {
   margin-top: 1rem;
 }
 
+.activities-gallery figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.activities-gallery img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.activities-gallery figure:hover {
+  transform: translateY(-4px);
+}
+
 .activities figure {
   margin: 0;
 }
