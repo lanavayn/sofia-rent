@@ -15,10 +15,9 @@
 
   <section class="testimonial-form">
     <form name="testimonial"
-      method="POST"
-      data-netlify="true"
-
-      onsubmit="showConfirmation(event)">
+    method="POST"
+    action="/thank-you.html"
+    data-netlify="true">
 
       <input type="hidden" name="form-name" value="testimonial">
 
@@ -47,27 +46,7 @@
   <footer>
     <p><a href="index.html">← Back to Home</a></p>
   </footer>
-  <script>
-    function showConfirmation(event) {
-      event.preventDefault();
-      const form = event.target;
-  
-      fetch(window.location.pathname, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString()
-      })
-      .then((response) => {
-      if (!response.ok) {
-        throw new Error("Netlify did not accept the form");
-      }
 
-      form.style.display = "none";
-      document.getElementById("confirmation").style.display = "block";
-    })
-      .catch(() => alert("Submission failed. Please try again."));
-    }
-  </script>
 
 </body>
 </html>
