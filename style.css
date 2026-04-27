@@ -121,7 +121,8 @@ ul {
 /* Testimonials */
 .testimonial-form {
   background-color: #fff8f0;
-  padding: 30px 20px;
+  margin: 16px 12px;
+  padding: 18px;
   border-top: 2px solid #ffb347;
   text-align: center;
   margin-top: 40px;
@@ -170,6 +171,29 @@ ul {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+  }
+
+  @media (max-width: 600px) {
+    .orange-box {
+      padding: 24px 16px;
+    }
+  
+    .orange-box h1 {
+      font-size: 1.5rem;
+      line-height: 1.25;
+    }
+  
+    .testimonial-form {
+      margin: 16px 12px;
+      padding: 18px;
+    }
+  
+    .testimonial-form input,
+    .testimonial-form textarea,
+    .testimonial-form button {
+      width: 100%;
+      box-sizing: border-box;
+    }
   }
 
 /* Map */
