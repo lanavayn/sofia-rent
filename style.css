@@ -1031,3 +1031,25 @@ section.location p {
 .more-amenities.hidden {
   display: none;
 }
+
+/* Bottom action buttons - unified alignment */
+.location .button,
+.intro .button,
+.share-button button {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 14px auto 0;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .location .button,
+  .intro .button,
+  .share-button button {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.05rem;
+    padding: 12px 16px;
+  }
+}
