@@ -77,7 +77,7 @@ section {
   background-color: #fff;
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
   box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
 
@@ -885,15 +885,6 @@ section.location p {
   list-style: none;
 }
 
-.activities summary::after {
-  content: " +";
-  font-weight: 700;
-}
-
-.activities details[open] summary::after {
-  content: " −";
-}
-
 .activities-gallery {
   margin-top: 1rem;
 }
@@ -1051,5 +1042,120 @@ section.location p {
     box-sizing: border-box;
     font-size: 1.05rem;
     padding: 12px 16px;
+  }
+}
+
+.beach {
+  padding-bottom: 1.2rem;
+}
+
+.beach-feature {
+  margin-top: 1rem;
+}
+
+.beach-feature img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.beach-caption,
+.beach-more figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.beach-more {
+  margin-top: 0.8rem;
+}
+
+.beach-more summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #2f7d46;
+  margin-bottom: 0.8rem;
+}
+
+.beach-more-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.beach-more figure {
+  margin: 0;
+}
+
+.beach-more img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.beach-video {
+  width: 100%;
+  max-height: 340px;
+  margin-top: 1rem;
+  border-radius: 14px;
+}
+
+.beach-more summary {
+  list-style: none;
+  cursor: pointer;
+  display: block;
+  background: #fff;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  margin-top: 0.9rem;
+  font-weight: 700;
+  color: #2f7d46;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.beach-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.inside-photos {
+  width: 100%;
+  margin-top: 0.8rem;
+}
+
+.inside-photos details {
+  margin-top: 0;
+}
+
+.activities {
+  margin-top: 0;
+}
+
+.beach-more summary::after,
+.activities summary::after {
+  content: " +";
+  font-weight: 700;
+}
+
+.beach-more[open] summary::after,
+.activities details[open] summary::after {
+  content: " −";
+}
+
+@media (min-width: 768px) {
+  .beach-feature img,
+  .beach-more img,
+  .beach-video {
+    max-width: 620px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .beach-caption,
+  .beach-more figcaption {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
