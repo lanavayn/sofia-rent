@@ -1159,3 +1159,25 @@ section.location p {
     margin-right: auto;
   }
 }
+
+.house-rules {
+  text-align: center;
+}
+
+.time-row {
+  margin: 12px 0;
+  font-size: 1.1rem;
+}
+
+.time-value {
+  color: #d97706;
+  font-weight: 900;
+  margin-left: 6px;
+  font-size: 1.35rem;
+}
+
+.luggage-note {
+  text-align: left;
+  margin-top: 18px;
+  line-height: 1.6;
+}
