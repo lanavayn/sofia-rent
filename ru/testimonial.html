@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оставить отзыв</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header>
+    <div class="container orange-box">
+      <h1>📝 Оставить отзыв о Софии</h1>
+    </div>
+  </header>
+
+  <section class="testimonial-form">
+      <form name="testimonial"
+      method="POST"
+      action="/ru/thank-you.html"
+      data-netlify="true"
+      netlify-honeypot="bot-field">
+
+      <input type="hidden" name="form-name" value="testimonial">
+
+      <div class="bot-field" aria-hidden="true">
+        <label>
+          Не заполняйте это поле:
+          <input name="bot-field" tabindex="-1" autocomplete="off">
+        </label>
+      </div>
+
+
+      <div class="form-group">
+        <label for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Ваш отзыв</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+
+      <div style="text-align:center;">
+        <button type="submit">Отправить</button>
+      </div>
+    </form>
+
+
+    <div id="confirmation" style="display:none; margin-top: 20px; font-weight: bold; color: green;">
+      🎉 Спасибо за ваш отзыв!
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="index.html">← Вернуться на главную</a></p>
+  </footer>
+
+
+</body>
+</html>
