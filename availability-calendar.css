@@ -207,6 +207,8 @@
 @media (max-width: 480px) {
   .calendar-day,
   .calendar-day.is-empty {
-    min-height: 46px;
+    height: 54px;
+    min-height: 0;
+    box-sizing: border-box;
   }
 }
