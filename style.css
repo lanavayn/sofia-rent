@@ -656,6 +656,29 @@ section:hover {
   flex-wrap: wrap; /* важно! */
 }
 
+@media (max-width: 480px) {
+  .cta-btn.call,
+  .cta-btn.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cta-btn.call .cta-label,
+  .cta-btn.text .cta-label,
+  .cta-btn.call .phone-number,
+  .cta-btn.text .phone-number {
+    display: block;
+  }
+
+  .cta-btn.call .phone-number,
+  .cta-btn.text .phone-number {
+    white-space: nowrap;
+  }
+}
+
 .location-btn {
   display: inline-flex;
   align-items: center;
