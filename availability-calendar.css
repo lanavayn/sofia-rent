@@ -202,3 +202,11 @@
     font-size: 0.78rem;
   }
 }
+
+/* Keep the existing tablet treatment, but make date rows shorter on phones. */
+@media (max-width: 480px) {
+  .calendar-day,
+  .calendar-day.is-empty {
+    min-height: 46px;
+  }
+}
