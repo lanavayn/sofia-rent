@@ -20,6 +20,7 @@
   <meta name="author" content="Lana Vayner" />
 
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="availability-calendar.css" />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -126,7 +127,21 @@
       <h2>Availability Calendar</h2>
       <p>Check the calendar below to see which dates are currently available.</p>
       <div class="calendar-container">
-        <iframe src="https://calendar.google.com/calendar/embed?src=c32ab8b880a68ef9869fa117eb13963d6594772c99854d003a67405fc00f7c6e%40group.calendar.google.com&amp;ctz=America%2FToronto" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <div class="availability-calendar-app" data-calendar-api="/.netlify/functions/calendar-availability" data-calendar-locale="en">
+          <div class="availability-calendar-toolbar">
+            <button type="button" class="calendar-nav" data-calendar-prev aria-label="Previous month">‹</button>
+            <h3 class="calendar-month" data-calendar-month aria-live="polite"></h3>
+            <button type="button" class="calendar-nav" data-calendar-next aria-label="Next month">›</button>
+          </div>
+          <div class="calendar-status" data-calendar-status role="status" aria-live="polite">Loading availability…</div>
+          <div class="calendar-grid" data-calendar-grid role="grid" aria-label="Availability calendar"></div>
+          <div class="calendar-legend" aria-label="Calendar legend">
+            <span><i class="legend-swatch available"></i>Available</span>
+            <span><i class="legend-swatch booked"></i>Booked</span>
+            <span><i class="legend-swatch booked-am"></i>Booked in the morning</span>
+            <span><i class="legend-swatch booked-pm"></i>Booked in the afternoon</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -365,6 +380,8 @@
 ">
   ↑ Back to Top
 </a>
+
+<script src="availability-calendar.js"></script>
 
 <script>
 

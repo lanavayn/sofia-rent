@@ -20,7 +20,7 @@
   <meta name="author" content="Lana Vayner" />
 
   <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="availability-calendar.css" />
+  <link rel="stylesheet" href="../availability-calendar.css" />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -118,7 +118,7 @@
     <section class="pricing-card">
       <h2>💲 Стоимость</h2>    
       <div class="price-main">
-        <span class="price">$120</span>
+        <span class="price">$150</span>
         <span class="per-night">за ночь</span>
       </div>    
       <p class="price-note">До 4 гостей</p>
@@ -128,7 +128,7 @@
       <h2>Календарь свободных дат</h2>
       <p>Посмотрите календарь ниже, чтобы узнать, какие даты сейчас свободны.</p>
       <div class="calendar-container">
-        <div class="availability-calendar-app" data-calendar-api="/.netlify/functions/calendar-availability">
+        <div class="availability-calendar-app" data-calendar-api="/.netlify/functions/calendar-availability" data-calendar-locale="ru">
           <div class="availability-calendar-toolbar">
             <button type="button" class="calendar-nav" data-calendar-prev aria-label="Предыдущий месяц">‹</button>
             <h3 class="calendar-month" data-calendar-month aria-live="polite"></h3>
@@ -410,130 +410,7 @@
   }
 </script>
 
-<script>
-  (function () {
-    const app = document.querySelector('.availability-calendar-app');
-    if (!app) return;
-
-    const monthLabel = app.querySelector('[data-calendar-month]');
-    const grid = app.querySelector('[data-calendar-grid]');
-    const status = app.querySelector('[data-calendar-status]');
-    const prevButton = app.querySelector('[data-calendar-prev]');
-    const nextButton = app.querySelector('[data-calendar-next]');
-    const apiPath = app.dataset.calendarApi;
-    const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-    const weekdayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-    const weekdayNamesLong = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
-    const stateLabels = {
-      available: 'свободно',
-      booked: 'занято весь день',
-      'booked-am': 'занято утром',
-      'booked-pm': 'занято днём',
-      unknown: 'доступность не загружена'
-    };
-    const today = new Date();
-    let displayedMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-    let availability = new Map();
-    let dataLoaded = false;
-    let requestId = 0;
-
-    function pad(value) {
-      return String(value).padStart(2, '0');
-    }
-
-    function formatDate(date) {
-      return date.getFullYear() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate());
-    }
-
-    function monthRange(month) {
-      const start = new Date(month.getFullYear(), month.getMonth(), 1);
-      const end = new Date(month.getFullYear(), month.getMonth() + 1, 0);
-      return { start: formatDate(start), end: formatDate(end) };
-    }
-
-    function setStatus(message, isError) {
-      status.textContent = message;
-      status.classList.toggle('is-error', Boolean(isError));
-    }
-
-    function render(month) {
-      monthLabel.textContent = monthNames[month.getMonth()] + ' ' + month.getFullYear();
-      grid.replaceChildren();
-
-      weekdayNames.forEach(function (name, index) {
-        const heading = document.createElement('div');
-        heading.className = 'calendar-weekday';
-        heading.setAttribute('role', 'columnheader');
-        heading.innerHTML = '<span class="weekday-short">' + name + '</span><span class="weekday-long">' + weekdayNamesLong[index] + '</span>';
-        grid.appendChild(heading);
-      });
-
-      const firstDay = new Date(month.getFullYear(), month.getMonth(), 1);
-      const offset = (firstDay.getDay() + 6) % 7;
-      const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-
-      for (let i = 0; i < offset; i += 1) {
-        const empty = document.createElement('div');
-        empty.className = 'calendar-day is-empty';
-        empty.setAttribute('role', 'gridcell');
-        grid.appendChild(empty);
-      }
-
-      for (let day = 1; day <= daysInMonth; day += 1) {
-        const date = new Date(month.getFullYear(), month.getMonth(), day);
-        const key = formatDate(date);
-        const state = dataLoaded ? (availability.get(key) || 'available') : 'unknown';
-        const cell = document.createElement('div');
-        const number = document.createElement('span');
-        cell.className = 'calendar-day state-' + state;
-        cell.setAttribute('role', 'gridcell');
-        cell.setAttribute('aria-label', day + ' ' + monthNames[month.getMonth()] + ' ' + month.getFullYear() + ', ' + stateLabels[state]);
-        cell.dataset.date = key;
-        number.className = 'calendar-day-number';
-        number.textContent = day;
-        cell.appendChild(number);
-        grid.appendChild(cell);
-      }
-    }
-
-    async function loadMonth(month) {
-      const currentRequest = ++requestId;
-      const range = monthRange(month);
-      setStatus('Загрузка доступности…', false);
-      availability = new Map();
-      dataLoaded = false;
-      render(month);
-
-      try {
-        const response = await fetch(apiPath + '?start=' + encodeURIComponent(range.start) + '&end=' + encodeURIComponent(range.end), { headers: { Accept: 'application/json' } });
-        if (!response.ok) throw new Error('Calendar request failed');
-        const payload = await response.json();
-        if (!payload || !Array.isArray(payload.days)) throw new Error('Invalid calendar response');
-        if (currentRequest !== requestId) return;
-        payload.days.forEach(function (item) {
-          if (item && /^\d{4}-\d{2}-\d{2}$/.test(item.date) && stateLabels[item.state]) availability.set(item.date, item.state);
-        });
-        dataLoaded = true;
-        setStatus('Обновлено: ' + new Date().toLocaleTimeString('ru-CA', { hour: '2-digit', minute: '2-digit' }), false);
-        render(month);
-      } catch (error) {
-        if (currentRequest !== requestId) return;
-        setStatus('Доступность временно недоступна. Пожалуйста, свяжитесь с Софией.', true);
-        render(month);
-      }
-    }
-
-    prevButton.addEventListener('click', function () {
-      displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() - 1, 1);
-      loadMonth(displayedMonth);
-    });
-    nextButton.addEventListener('click', function () {
-      displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 1);
-      loadMonth(displayedMonth);
-    });
-    loadMonth(displayedMonth);
-  }());
-</script>
+<script src="../availability-calendar.js"></script>
 
 <script>
   const galleryImages = Array.from(document.querySelectorAll('.gallery-img'));

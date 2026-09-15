@@ -131,6 +131,7 @@
 .calendar-day.is-empty {
   min-height: 78px;
   background: #fafafa;
+  pointer-events: none;
 }
 
 .calendar-legend {
